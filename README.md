@@ -1,4 +1,4 @@
 # taller-prod-ui
 Cesar Feregrino
-Diego Quiroz
-Emiliano Flores
+\nDiego Quiroz
+\nEmiliano Flores
