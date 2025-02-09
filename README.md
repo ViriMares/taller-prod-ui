@@ -1,2 +1,4 @@
 # taller-prod-ui
-Alumna: Rosa Carolina Romero López
+=======
+Rosa Carolina Romero López
+Cesar Feregrino
