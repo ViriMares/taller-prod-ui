@@ -1,2 +1,8 @@
 # taller-prod-ui
-Cesar Feregrino
+
+## Developers
+Rosa Carolina Romero López.
+
+Emiliano Flores.
+
+Cesar Feregrino.
