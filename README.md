@@ -1,2 +1,4 @@
 # taller-prod-ui
-Cesar 
+=======
+Rosa Carolina Romero López
+Cesar Feregrino
