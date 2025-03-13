@@ -1,12 +1,35 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router';
+import { ref } from 'vue';
+
+const showSubmenu = ref(false);
 </script>
 
 <template>
   <header>
     <nav>
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/productos">Productos</RouterLink>
+
+      <!-- "Productos" con Submenú Centrado -->
+      <div 
+        class="relative group flex items-center"
+        @mouseenter="showSubmenu = true"
+        @mouseleave="showSubmenu = false"
+      >
+        <RouterLink to="/productos" class="submenu-link">Productos</RouterLink>
+        <ul v-if="showSubmenu" class="submenu">
+          <li>
+            <RouterLink to="/productos?categoria=videovigilancia">Videovigilancia</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/productos?categoria=control-acceso">Control de Acceso</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/productos?categoria=alarmas">Alarmas</RouterLink>
+          </li>
+        </ul>
+      </div>
+
       <RouterLink to="/inventario">Inventario</RouterLink>
       <RouterLink to="/login">Login</RouterLink>
       <RouterLink to="/about">About</RouterLink>
@@ -17,7 +40,7 @@ import { RouterLink, RouterView } from 'vue-router';
 </template>
 
 <style scoped>
-/*  Hace que la barra de navegación esté en la parte superior con fondo negro */
+/* Mantiene la barra de navegación fija arriba */
 header {
   background: black;
   padding: 15px 0;
@@ -28,14 +51,15 @@ header {
   z-index: 1000;
 }
 
-/*  Alinea los enlaces al centro en horizontal */
+/* Ajusta la distribución de los elementos */
 nav {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
+  gap: 30px; /* Espaciado uniforme */
 }
 
-/*  Estiliza los enlaces */
+/* Estiliza los enlaces */
 nav a {
   color: white;
   text-decoration: none;
@@ -45,7 +69,7 @@ nav a {
   border-radius: 5px;
 }
 
-/*  Agrega efecto hover */
+/* Hover */
 nav a:hover {
   background: rgba(255, 255, 255, 0.2);
 }
@@ -55,8 +79,54 @@ nav a.router-link-exact-active {
   background: white;
   color: black;
 }
-/* Ajusta el margen superior del contenido para que no quede detrás del Navbar */
+
+/* Ajusta el margen superior del contenido */
 .content {
-  margin-top: 70px; /* Ajusta según la altura del Navbar */
+  margin-top: 80px; /* Ajustado para que no quede pegado */
+}
+
+/* Estilos del Submenú */
+.relative {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Centrar y alinear correctamente el submenú */
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 8px 0;
+  display: none;
+}
+
+/* Hace que el submenú aparezca al pasar el mouse */
+.relative:hover .submenu {
+  display: block;
+}
+
+/* Estiliza los elementos del submenú */
+.submenu li {
+  list-style: none;
+}
+
+.submenu a {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  transition: background 0.3s;
+  text-align: center;
+}
+
+.submenu a:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 </style>
+
