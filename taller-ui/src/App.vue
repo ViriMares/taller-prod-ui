@@ -1,7 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router';
-</script>
-
 <template>
   <header>
     <nav>
@@ -13,11 +9,26 @@ import { RouterLink, RouterView } from 'vue-router';
     </nav>
   </header>
 
-  <RouterView />
+  <main class="content">
+    <RouterView :key="$route.fullPath" />
+  </main>
 </template>
 
 <style scoped>
-/*  Hace que la barra de navegación esté en la parte superior con fondo negro */
+/* Reset para evitar márgenes y padding no deseados */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;  /* Asegurar que ocupa toda la pantalla */
+  height: 100%;
+  overflow-x: hidden; /* Evita desbordamientos laterales */
+}
+
+/* Navbar fijo */
 header {
   background: black;
   padding: 15px 0;
@@ -26,16 +37,17 @@ header {
   left: 0;
   width: 100%;
   z-index: 1000;
+  text-align: center;
 }
 
-/*  Alinea los enlaces al centro en horizontal */
+/* Enlaces de navegación */
 nav {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 
-/*  Estiliza los enlaces */
 nav a {
   color: white;
   text-decoration: none;
@@ -45,18 +57,21 @@ nav a {
   border-radius: 5px;
 }
 
-/*  Agrega efecto hover */
 nav a:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Resalta el enlace activo */
 nav a.router-link-exact-active {
   background: white;
   color: black;
 }
-/* Ajusta el margen superior del contenido para que no quede detrás del Navbar */
-.content {
-  margin-top: 70px; /* Ajusta según la altura del Navbar */
+
+/* Contenido debajo del navbar */
+main.content {
+  width: 100vw; /* Ocupar el ancho completo */
+  min-height: 100vh; /* Evitar espacios en blanco */
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 70px; /* Ajustar la separación del navbar */
 }
 </style>
