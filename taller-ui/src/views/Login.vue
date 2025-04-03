@@ -56,10 +56,13 @@ export default {
 <style scoped>
 .login-container {
   width: 300px;
-  margin: auto;
+  margin: 0 auto; /* Centrado horizontal */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  padding-top: 100px; /* Espaciado superior */
+  margin-left: 105%; /* Desplaza el contenido un 20% más a la derecha */
+  transform: translateX(-50%); /* Ajusta el desplazamiento a la mitad */
 }
 
 h2 {
