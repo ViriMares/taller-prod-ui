@@ -37,7 +37,9 @@ const showSubmenu = ref(false);
   </header>
 
   <main class="content">
-    <RouterView :key="$route.fullPath" />
+    <div class="container">
+      <RouterView :key="$route.fullPath" />
+    </div>
   </main>
 </template>
 
@@ -85,6 +87,16 @@ nav a.router-link-exact-active {
 /* Ajusta el margen superior del contenido */
 .content {
   margin-top: 80px; /* Ajustado para que no quede pegado */
+  display: flex;
+  justify-content: center;
+  padding: 0 15px; /* Espaciado para que no quede pegado a los bordes */
+}
+
+/* Contenedor principal para que el contenido ocupe todo el ancho */
+.container {
+  width: 100%;
+  max-width: 1200px; /* Límite del ancho máximo */
+  padding: 20px;
 }
 
 /* Estilos del Submenú */
@@ -131,4 +143,3 @@ nav a.router-link-exact-active {
   background: rgba(0, 0, 0, 0.1);
 }
 </style>
-
