@@ -36,7 +36,11 @@ const showSubmenu = ref(false);
     </nav>
   </header>
 
-  <RouterView />
+  <main class="content">
+    <div class="container">
+      <RouterView :key="$route.fullPath" />
+    </div>
+  </main>
 </template>
 
 <style scoped>
@@ -49,6 +53,7 @@ header {
   left: 0;
   width: 100%;
   z-index: 1000;
+  text-align: center;
 }
 
 /* Ajusta la distribución de los elementos */
@@ -74,7 +79,6 @@ nav a:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Resalta el enlace activo */
 nav a.router-link-exact-active {
   background: white;
   color: black;
@@ -83,6 +87,16 @@ nav a.router-link-exact-active {
 /* Ajusta el margen superior del contenido */
 .content {
   margin-top: 80px; /* Ajustado para que no quede pegado */
+  display: flex;
+  justify-content: center;
+  padding: 0 15px; /* Espaciado para que no quede pegado a los bordes */
+}
+
+/* Contenedor principal para que el contenido ocupe todo el ancho */
+.container {
+  width: 100%;
+  max-width: 1200px; /* Límite del ancho máximo */
+  padding: 20px;
 }
 
 /* Estilos del Submenú */

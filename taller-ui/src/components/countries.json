@@ -1,0 +1,254 @@
+[
+  {
+    "name": "Afganistán",
+    "dial_code": "93"
+  },
+  {
+    "name": "Albania",
+    "dial_code": "355"
+  },
+  {
+    "name": "Alemania",
+    "dial_code": "49"
+  },
+  {
+    "name": "Andorra",
+    "dial_code": "376"
+  },
+  {
+    "name": "Angola",
+    "dial_code": "244"
+  },
+  {
+    "name": "Arabia Saudita",
+    "dial_code": "966"
+  },
+  {
+    "name": "Argentina",
+    "dial_code": "54"
+  },
+  {
+    "name": "Armenia",
+    "dial_code": "374"
+  },
+  {
+    "name": "Australia",
+    "dial_code": "61"
+  },
+  {
+    "name": "Austria",
+    "dial_code": "43"
+  },
+  {
+    "name": "Bélgica",
+    "dial_code": "32"
+  },
+  {
+    "name": "Bolivia",
+    "dial_code": "591"
+  },
+  {
+    "name": "Brasil",
+    "dial_code": "55"
+  },
+  {
+    "name": "Canadá",
+    "dial_code": "1"
+  },
+  {
+    "name": "Chile",
+    "dial_code": "56"
+  },
+  {
+    "name": "China",
+    "dial_code": "86"
+  },
+  {
+    "name": "Colombia",
+    "dial_code": "57"
+  },
+  {
+    "name": "Corea del Sur",
+    "dial_code": "82"
+  },
+  {
+    "name": "Costa Rica",
+    "dial_code": "506"
+  },
+  {
+    "name": "Cuba",
+    "dial_code": "53"
+  },
+  {
+    "name": "Dinamarca",
+    "dial_code": "45"
+  },
+  {
+    "name": "Ecuador",
+    "dial_code": "593"
+  },
+  {
+    "name": "Egipto",
+    "dial_code": "20"
+  },
+  {
+    "name": "El Salvador",
+    "dial_code": "503"
+  },
+  {
+    "name": "Emiratos Árabes Unidos",
+    "dial_code": "971"
+  },
+  {
+    "name": "España",
+    "dial_code": "34"
+  },
+  {
+    "name": "Estados Unidos",
+    "dial_code": "1"
+  },
+  {
+    "name": "Estonia",
+    "dial_code": "372"
+  },
+  {
+    "name": "Filipinas",
+    "dial_code": "63"
+  },
+  {
+    "name": "Finlandia",
+    "dial_code": "358"
+  },
+  {
+    "name": "Francia",
+    "dial_code": "33"
+  },
+  {
+    "name": "Grecia",
+    "dial_code": "30"
+  },
+  {
+    "name": "Guatemala",
+    "dial_code": "502"
+  },
+  {
+    "name": "Honduras",
+    "dial_code": "504"
+  },
+  {
+    "name": "Hungría",
+    "dial_code": "36"
+  },
+  {
+    "name": "India",
+    "dial_code": "91"
+  },
+  {
+    "name": "Indonesia",
+    "dial_code": "62"
+  },
+  {
+    "name": "Irlanda",
+    "dial_code": "353"
+  },
+  {
+    "name": "Israel",
+    "dial_code": "972"
+  },
+  {
+    "name": "Italia",
+    "dial_code": "39"
+  },
+  {
+    "name": "Japón",
+    "dial_code": "81"
+  },
+  {
+    "name": "México",
+    "dial_code": "52"
+  },
+  {
+    "name": "Noruega",
+    "dial_code": "47"
+  },
+  {
+    "name": "Nueva Zelanda",
+    "dial_code": "64"
+  },
+  {
+    "name": "Países Bajos",
+    "dial_code": "31"
+  },
+  {
+    "name": "Panamá",
+    "dial_code": "507"
+  },
+  {
+    "name": "Paraguay",
+    "dial_code": "595"
+  },
+  {
+    "name": "Perú",
+    "dial_code": "51"
+  },
+  {
+    "name": "Polonia",
+    "dial_code": "48"
+  },
+  {
+    "name": "Portugal",
+    "dial_code": "351"
+  },
+  {
+    "name": "Puerto Rico",
+    "dial_code": "1"
+  },
+  {
+    "name": "Reino Unido",
+    "dial_code": "44"
+  },
+  {
+    "name": "República Checa",
+    "dial_code": "420"
+  },
+  {
+    "name": "República Dominicana",
+    "dial_code": "1"
+  },
+  {
+    "name": "Rumania",
+    "dial_code": "40"
+  },
+  {
+    "name": "Rusia",
+    "dial_code": "7"
+  },
+  {
+    "name": "Suecia",
+    "dial_code": "46"
+  },
+  {
+    "name": "Suiza",
+    "dial_code": "41"
+  },
+  {
+    "name": "Turquía",
+    "dial_code": "90"
+  },
+  {
+    "name": "Ucrania",
+    "dial_code": "380"
+  },
+  {
+    "name": "Uruguay",
+    "dial_code": "598"
+  },
+  {
+    "name": "Venezuela",
+    "dial_code": "58"
+  },
+  {
+    "name": "Vietnam",
+    "dial_code": "84"
+  }
+]
