@@ -52,8 +52,11 @@ function onImageError() {
 
 <style scoped>
 .card {
+  /*width: 100%;
+  max-width: 300px; */
   width: 100%;
-  max-width: 300px;
+  max-width: 100%;
+  margin: 0 auto;
   border-radius: 8px;
   overflow: hidden;
   background: white;

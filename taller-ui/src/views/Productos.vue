@@ -2,12 +2,23 @@
   <div class="productos-container">
     <h1 class="page-title">Productos - {{ categoriaActual }}</h1>
 
-    <!-- Mostrar mensaje si no hay productos -->
+    <!-- Búsqueda con botón limpiar -->
+    <div class="busqueda-wrapper">
+      <input
+        type="text"
+        v-model="busqueda"
+        placeholder="Buscar productos..."
+        class="busqueda-input"
+      />
+      <button v-if="busqueda" @click="busqueda = ''" class="clear-button">×</button>
+    </div>
+
+    <!-- Mensaje si no hay resultados -->
     <p v-if="productosFiltrados.length === 0" style="color: red;">
-      No se encontraron productos para esta categoría.
+      No se encontraron productos para esta búsqueda.
     </p>
 
-    <!-- Contenedor responsivo -->
+    <!-- Tarjetas -->
     <div :class="['productos-grid', { fading: isFading }]">
       <Card
         v-for="producto in productosFiltrados"
@@ -26,8 +37,9 @@ import Card from '@/components/card.vue';
 const route = useRoute();
 const categoriaActual = ref('Todos');
 const isFading = ref(false);
+const busqueda = ref('');
 
-// Actualizar categoría cuando cambia la URL
+//  Cambiar categoría según la URL
 watch(
   () => route.query.categoria,
   async (nuevaCategoria) => {
@@ -35,12 +47,12 @@ watch(
     await new Promise((resolve) => setTimeout(resolve, 100));
     categoriaActual.value = nuevaCategoria || 'Todos';
     isFading.value = false;
-    console.log('🔁 Categoría actual:', categoriaActual.value);
+    console.log('Categoría actual:', categoriaActual.value);
   },
   { immediate: true }
 );
 
-// Lista de productos
+// Productos
 const productos = ref([
   {
     productId: 1,
@@ -86,15 +98,24 @@ const productos = ref([
   }
 ]);
 
-// Filtrar productos por categoría
+// ▶️ Filtro combinado (categoría + texto de búsqueda)
 const productosFiltrados = computed(() => {
   const actual = categoriaActual.value.toLowerCase();
-  return actual === 'todos'
-    ? productos.value
-    : productos.value.filter((producto) => producto.category === actual);
+  const texto = busqueda.value.trim().toLowerCase();
+
+  return productos.value.filter((producto) => {
+    const coincideCategoria =
+      actual === 'todos' || producto.category === actual;
+
+    const coincideBusqueda =
+      producto.productName.toLowerCase().includes(texto) ||
+      producto.description.toLowerCase().includes(texto);
+
+    return coincideCategoria && coincideBusqueda;
+  });
 });
 
-// Log para depuración
+//  Depuración
 watch(productosFiltrados, (val) => {
   console.log('📦 Productos filtrados:', val);
 });
@@ -113,13 +134,42 @@ watch(productosFiltrados, (val) => {
   margin-bottom: 20px;
 }
 
-/*  Cuadrícula responsiva */
+/* Búsqueda */
+.busqueda-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.busqueda-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 40px 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.clear-button {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #888;
+  cursor: pointer;
+}
+
+/* Tarjetas */
 .productos-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
-  justify-content: center;
   padding: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  width: 100%;
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
@@ -128,7 +178,7 @@ watch(productosFiltrados, (val) => {
   opacity: 0;
 }
 
-/*  Móvil */
+/* Móvil */
 @media (max-width: 768px) {
   .productos-grid {
     grid-template-columns: 1fr;
@@ -148,8 +198,3 @@ watch(productosFiltrados, (val) => {
   }
 }
 </style>
-
-
-
-
-
