@@ -124,9 +124,25 @@ nav a.router-link-exact-active {
   transition: background 0.3s;
   text-align: center;
 }
-
+ /*    pruebas    */
 .submenu a:hover {
   background: rgba(0, 0, 0, 0.1);
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #121212;
+  color: white;
+  font-family: sans-serif;
+}
+
+#app {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-top: 80px; /* evita que el contenido quede tapado por el navbar */
+}
 </style>
+
 

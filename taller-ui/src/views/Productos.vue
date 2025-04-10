@@ -2,7 +2,7 @@
   <div class="productos-container">
     <h1 class="page-title">Productos - {{ categoriaActual }}</h1>
 
-    <!-- 🔍 Búsqueda con botón limpiar -->
+    <!-- Búsqueda con botón limpiar -->
     <div class="busqueda-wrapper">
       <input
         type="text"
@@ -13,12 +13,12 @@
       <button v-if="busqueda" @click="busqueda = ''" class="clear-button">×</button>
     </div>
 
-    <!-- 🟥 Mensaje si no hay resultados -->
+    <!-- Mensaje si no hay resultados -->
     <p v-if="productosFiltrados.length === 0" style="color: red;">
       No se encontraron productos para esta búsqueda.
     </p>
 
-    <!-- 🧩 Tarjetas -->
+    <!-- Tarjetas -->
     <div :class="['productos-grid', { fading: isFading }]">
       <Card
         v-for="producto in productosFiltrados"
@@ -39,7 +39,7 @@ const categoriaActual = ref('Todos');
 const isFading = ref(false);
 const busqueda = ref('');
 
-// ▶️ Cambiar categoría según la URL
+//  Cambiar categoría según la URL
 watch(
   () => route.query.categoria,
   async (nuevaCategoria) => {
@@ -47,12 +47,12 @@ watch(
     await new Promise((resolve) => setTimeout(resolve, 100));
     categoriaActual.value = nuevaCategoria || 'Todos';
     isFading.value = false;
-    console.log('🔁 Categoría actual:', categoriaActual.value);
+    console.log('Categoría actual:', categoriaActual.value);
   },
   { immediate: true }
 );
 
-// ▶️ Productos
+// Productos
 const productos = ref([
   {
     productId: 1,
@@ -115,7 +115,7 @@ const productosFiltrados = computed(() => {
   });
 });
 
-// ▶️ Depuración
+//  Depuración
 watch(productosFiltrados, (val) => {
   console.log('📦 Productos filtrados:', val);
 });
@@ -134,7 +134,7 @@ watch(productosFiltrados, (val) => {
   margin-bottom: 20px;
 }
 
-/* 🔍 Búsqueda */
+/* Búsqueda */
 .busqueda-wrapper {
   position: relative;
   display: flex;
@@ -163,13 +163,13 @@ watch(productosFiltrados, (val) => {
   cursor: pointer;
 }
 
-/* 🧩 Tarjetas */
+/* Tarjetas */
 .productos-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
-  justify-content: center;
   padding: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  width: 100%;
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
@@ -178,7 +178,7 @@ watch(productosFiltrados, (val) => {
   opacity: 0;
 }
 
-/* 📱 Móvil */
+/* Móvil */
 @media (max-width: 768px) {
   .productos-grid {
     grid-template-columns: 1fr;
@@ -191,7 +191,7 @@ watch(productosFiltrados, (val) => {
   }
 }
 
-/* 💻 Tablet */
+/* Tablet */
 @media (min-width: 769px) and (max-width: 1024px) {
   .productos-grid {
     grid-template-columns: repeat(2, 1fr);
