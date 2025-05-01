@@ -22,7 +22,7 @@
     <div :class="['productos-grid', { fading: isFading }]">
       <Card
         v-for="producto in productosFiltrados"
-        :key="producto.productId"
+        :key="producto.idProducto"
         :producto="producto"
       />
     </div>
@@ -30,16 +30,30 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import axios from 'axios';
 import Card from '@/components/card.vue';
 
 const route = useRoute();
 const categoriaActual = ref('Todos');
 const isFading = ref(false);
 const busqueda = ref('');
+const productos = ref([]);
 
-//  Cambiar categoría según la URL
+// ▶️ Llamada a la API
+const cargarProductos = async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/api/productos');
+    productos.value = response.data;
+  } catch (error) {
+    console.error('❌ Error al cargar productos:', error);
+  }
+};
+
+onMounted(cargarProductos);
+
+//  Cambiar categoría según URL
 watch(
   () => route.query.categoria,
   async (nuevaCategoria) => {
@@ -47,77 +61,26 @@ watch(
     await new Promise((resolve) => setTimeout(resolve, 100));
     categoriaActual.value = nuevaCategoria || 'Todos';
     isFading.value = false;
-    console.log('Categoría actual:', categoriaActual.value);
+    console.log('📂 Categoría actual:', categoriaActual.value);
   },
   { immediate: true }
 );
 
-// Productos
-const productos = ref([
-  {
-    productId: 1,
-    productName: 'Cámara HD',
-    description: 'Alta resolución y visión nocturna.',
-    image: 'Camara.jpg',
-    category: 'videovigilancia'
-  },
-  {
-    productId: 2,
-    productName: 'DVR 4 Canales',
-    description: 'Grabación en tiempo real.',
-    image: 'DVR.jpg',
-    category: 'videovigilancia'
-  },
-  {
-    productId: 3,
-    productName: 'Lector Biométrico',
-    description: 'Control por huella.',
-    image: 'Biometrico.jpg',
-    category: 'control-acceso'
-  },
-  {
-    productId: 4,
-    productName: 'Tarjeta RFID',
-    description: 'Acceso por tarjeta.',
-    image: 'TarjetaRFID.jpg',
-    category: 'control-acceso'
-  },
-  {
-    productId: 5,
-    productName: 'Sensor de Movimiento',
-    description: 'Detecta presencia.',
-    image: 'Sensor.jpg',
-    category: 'alarmas'
-  },
-  {
-    productId: 6,
-    productName: 'Sirena de Alarma',
-    description: 'Sonido potente.',
-    image: 'Sirena.jpg',
-    category: 'alarmas'
-  }
-]);
-
-// ▶️ Filtro combinado (categoría + texto de búsqueda)
+//  x  Filtro por categoría y texto
 const productosFiltrados = computed(() => {
   const actual = categoriaActual.value.toLowerCase();
   const texto = busqueda.value.trim().toLowerCase();
 
   return productos.value.filter((producto) => {
-    const coincideCategoria =
-      actual === 'todos' || producto.category === actual;
+    const categoria = (producto.categoria || '').toLowerCase();
+    const nombre = (producto.nombreProducto || '').toLowerCase();
+    const descripcion = (producto.descripcion || '').toLowerCase();
 
-    const coincideBusqueda =
-      producto.productName.toLowerCase().includes(texto) ||
-      producto.description.toLowerCase().includes(texto);
+    const coincideCategoria = actual === 'todos' || categoria === actual;
+    const coincideBusqueda = nombre.includes(texto) || descripcion.includes(texto);
 
     return coincideCategoria && coincideBusqueda;
   });
-});
-
-//  Depuración
-watch(productosFiltrados, (val) => {
-  console.log('📦 Productos filtrados:', val);
 });
 </script>
 
@@ -198,3 +161,4 @@ watch(productosFiltrados, (val) => {
   }
 }
 </style>
+
