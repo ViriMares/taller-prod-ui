@@ -192,11 +192,52 @@ const userTypes = [
 ];
 
 // Acciones
-const submit = () => {
+const submit = async () => {
   if (isValid.value) {
-    console.log('Formulario enviado', user.value);
+    try {
+      const payload = {
+        nombreUsuario: user.value.username,
+        correoElectronico: user.value.email,
+        numeroTelefonico: user.value.phone,
+        numeroSecundario: user.value.secondaryPhone,
+        direccion: user.value.address,
+        pais: user.value.country?.name || '',
+        tipoUsuario: user.value.userType,
+      };
+
+      const response = await fetch('http://localhost:8080/api/usuarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) throw new Error('Error al crear el usuario');
+
+      const data = await response.json();
+      console.log('Usuario creado:', data);
+      alert('Usuario creado exitosamente');
+
+      // (opcional) Limpiar el formulario:
+      user.value = {
+        username: '',
+        email: '',
+        phoneCode: null,
+        phone: '',
+        secondaryPhoneCode: null,
+        secondaryPhone: '',
+        address: '',
+        country: null,
+        userType: null,
+      };
+    } catch (error) {
+      console.error('Error al enviar los datos:', error);
+      alert('Hubo un error al crear el usuario');
+    }
   }
 };
+
 
 const goBack = () => {
   console.log('Volver atrás');
