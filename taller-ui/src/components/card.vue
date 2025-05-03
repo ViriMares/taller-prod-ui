@@ -1,16 +1,18 @@
 <template>
   <div class="card" :class="categoriaClass">
+    <!-- Imagen del Producto -->
     <img
       class="product-image"
-      :src="imagenSrc"
-      :alt="producto.productName"
-      :key="imagenSrc"
-      @error="onImageError"
+      :src="imagenProducto"
+      :alt="producto.nombreProducto"
+      @error="imagenError"
     />
 
+    <!-- Información del Producto -->
     <div class="card-content">
-      <h3 class="product-title">{{ producto.productName }}</h3>
-      <p class="product-description">{{ producto.description }}</p>
+      <h3 class="product-title">{{ producto.nombreProducto }}</h3>
+      <p class="product-price">Precio: ${{ producto.precio }}</p>
+      <p class="product-stock">Stock: {{ producto.stock }}</p>
       <button class="buy-button">¡Me interesa!</button>
     </div>
   </div>
@@ -23,9 +25,14 @@ const props = defineProps({
   producto: Object
 });
 
-// Asignar clase por categoría para estilo temático
+const imagenProducto = ref(`/images/${props.producto.imagen || 'default.jpg'}`);
+
+const imagenError = () => {
+  imagenProducto.value = '/default.jpg'; // fallback
+};
+
 const categoriaClass = computed(() => {
-  switch (props.producto.category) {
+  switch ((props.producto.categoria || '').toLowerCase()) {
     case 'videovigilancia':
       return 'videovigilancia-theme';
     case 'control-acceso':
@@ -36,32 +43,16 @@ const categoriaClass = computed(() => {
       return '';
   }
 });
-
-// Ruta de imagen inicial (.jpg forzado)
-const imagenSrc = ref(
-  `/images/${(props.producto.image || '').replace(/\.(png|jpeg|webp|jpg)$/i, '.jpg')}`
-);
-
-// Manejar error de carga: mostrar imagen por defecto desde /public
-function onImageError() {
-  if (!imagenSrc.value.includes('/default.jpg')) {
-    imagenSrc.value = '/default.jpg'; // ruta correcta si está en public/
-  }
-}
 </script>
 
 <style scoped>
 .card {
-  /*width: 100%;
-  max-width: 300px; */
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
   border-radius: 8px;
   overflow: hidden;
   background: white;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -74,9 +65,7 @@ function onImageError() {
   height: 200px;
   object-fit: contain;
   padding: 10px;
-  background: #f1f1f1;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  background: #f8f8f8;
 }
 
 .card-content {
@@ -85,24 +74,33 @@ function onImageError() {
 
 .product-title {
   font-weight: bold;
+  font-size: 18px;
   margin-bottom: 8px;
 }
 
-.product-description {
+.product-price,
+.product-stock {
   font-size: 14px;
-  color: #444;
-  margin-bottom: 10px;
+  margin: 4px 0;
+  color: #555;
 }
 
 .buy-button {
+  margin-top: 10px;
+  background-color: #007bff;
   color: white;
   border: none;
   padding: 8px 16px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
-/* 🎨 Temas por categoría */
+.buy-button:hover {
+  background-color: #0056b3;
+}
+
+/* Temas por categoría */
 .videovigilancia-theme .product-title {
   color: #1976d2;
 }
@@ -124,3 +122,4 @@ function onImageError() {
   background-color: #d32f2f;
 }
 </style>
+
