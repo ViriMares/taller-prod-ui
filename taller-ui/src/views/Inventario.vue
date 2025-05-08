@@ -75,7 +75,7 @@ export default {
         { id: 2, description: 'Control de acceso biométrico', price: 99.49, stock: 15, imageSrc: controlacceso },
         { id: 3, description: 'Alarma de seguridad inteligente', price: 199.99, stock: 40, imageSrc: alarmaseguridad },
         { id: 4, description: 'Cámara de seguridad IP exterior', price: 249.99, stock: 10, imageSrc: camaraseguridad },
-        { id: 5, description: 'Control de acceso RFID', price: 89.99, stock: 30, imageSrc: controlacceso }
+        { id: 5, description: 'Control de acceso mediante RFID', price: 89.99, stock: 30, imageSrc: controlacceso }
       ]
     };
   },

@@ -42,7 +42,7 @@ export default {
       const nuevo = { id: nuevoId, ...this.nuevoProducto };
       productos.push(nuevo);
       localStorage.setItem('productosNuevos', JSON.stringify(productos));
-      this.$emit('producto-agregado'); // notificar al componente padre
+      this.$emit('producto-agregado'); // notificar al componente padre implicado
       this.nuevoProducto = { description: '', price: 0, stock: 0, imageSrc: '' };
     }
   }

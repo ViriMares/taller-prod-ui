@@ -70,9 +70,9 @@
 
       <div v-if="showContact" class="contact-info">
         <p><strong>WhatsApp:</strong> <a href="https://wa.me/5215551234567" target="_blank">+52 1 555 123 4567</a></p>
-        <p><strong>Facebook:</strong> <a href="https://facebook.com/secure.stock" target="_blank">facebook.com/empresa.seguridad</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/company/secure-stock" target="_blank">linkedin.com/company/empresa-seguridad</a></p>
-        <p><strong>Instagram:</strong> <a href="https://instagram.com/secure.stock" target="_blank">@empresa.seguridad</a></p>
+        <p><strong>Facebook:</strong> <a href="https://facebook.com/secure.stock" target="_blank">facebook.com/secure.stock</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/company/secure-stock" target="_blank">linkedin.com/company/secure-stock</a></p>
+        <p><strong>Instagram:</strong> <a href="https://instagram.com/secure.stock" target="_blank">@secure.stock</a></p>
       </div>
     </section>
   </div>
