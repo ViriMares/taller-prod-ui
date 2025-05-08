@@ -36,7 +36,10 @@ const showSubmenu = ref(false);
     </nav>
   </header>
 
-  <RouterView />
+  <!-- Aquí es donde se renderizan las vistas según la ruta -->
+  <main class="content">
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>
@@ -83,6 +86,7 @@ nav a.router-link-exact-active {
 /* Ajusta el margen superior del contenido */
 .content {
   margin-top: 80px; /* Ajustado para que no quede pegado */
+  padding: 20px;
 }
 
 /* Estilos del Submenú */

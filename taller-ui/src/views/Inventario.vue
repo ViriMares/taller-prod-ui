@@ -2,6 +2,7 @@
   <div class="inventory-container">
     <h1>Inventario de Productos de Seguridad</h1>
 
+<<<<<<< HEAD
     <button class="btn-alta" @click="mostrarFormulario = true">+ Agregar Producto</button>
 
     <!-- Formulario de Alta -->
@@ -29,6 +30,34 @@
 
     <!-- Tabla de productos -->
     <table class="inventory-table">
+=======
+    <!-- Botón para mostrar el formulario de alta de producto -->
+    <button @click="mostrarFormulario" class="btn-alta">+ Agregar Producto</button>
+
+    <!-- Formulario de Alta de Producto -->
+    <div v-if="formularioVisible" class="form-container">
+      <h2>Alta de Producto</h2>
+      <form @submit.prevent="guardarProducto">
+        <label for="descripcion">Descripción:</label>
+        <input v-model="producto.description" id="descripcion" required />
+
+        <label for="precio">Precio:</label>
+        <input v-model.number="producto.price" id="precio" type="number" step="0.01" required />
+
+        <label for="stock">Stock:</label>
+        <input v-model.number="producto.stock" id="stock" type="number" required />
+
+        <label for="imagen">URL de Imagen:</label>
+        <input v-model="producto.imageSrc" id="imagen" placeholder="Ej. /images/ejemplo.png" />
+
+        <button type="submit">Guardar</button>
+        <button @click.prevent="cancelarFormulario" class="cancelar">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Mostrar productos en inventario -->
+    <table v-if="!formularioVisible" class="inventory-table">
+>>>>>>> 571eed594c1c7f906d5eafa0cec61477c5fa5a0c
       <thead>
         <tr>
           <th>ID</th>
@@ -63,20 +92,33 @@ export default {
   name: 'Inventario',
   data() {
     return {
+<<<<<<< HEAD
       mostrarFormulario: false,
       nuevoProducto: {
+=======
+      // Variable reactiva para controlar la visibilidad del formulario
+      formularioVisible: false,
+      producto: {
+>>>>>>> 571eed594c1c7f906d5eafa0cec61477c5fa5a0c
         description: '',
         price: 0,
         stock: 0,
         imageSrc: ''
       },
+<<<<<<< HEAD
       //PRODUCTOS IMPLICADOS
+=======
+>>>>>>> 571eed594c1c7f906d5eafa0cec61477c5fa5a0c
       productosBase: [
         { id: 1, description: 'Cámara de video vigilancia HD', price: 150.99, stock: 25, imageSrc: camaravigilancia },
         { id: 2, description: 'Control de acceso biométrico', price: 99.49, stock: 15, imageSrc: controlacceso },
         { id: 3, description: 'Alarma de seguridad inteligente', price: 199.99, stock: 40, imageSrc: alarmaseguridad },
         { id: 4, description: 'Cámara de seguridad IP exterior', price: 249.99, stock: 10, imageSrc: camaraseguridad },
+<<<<<<< HEAD
         { id: 5, description: 'Control de acceso mediante RFID', price: 89.99, stock: 30, imageSrc: controlacceso }
+=======
+        { id: 5, description: 'Control de acceso RFID', price: 89.99, stock: 30, imageSrc: controlacceso },
+>>>>>>> 571eed594c1c7f906d5eafa0cec61477c5fa5a0c
       ]
     };
   },
@@ -87,6 +129,7 @@ export default {
     }
   },
   methods: {
+<<<<<<< HEAD
     formatPrice(price) {
       return `$${price.toFixed(2)}`;
     },
@@ -101,6 +144,25 @@ export default {
       localStorage.setItem('productosNuevos', JSON.stringify(nuevos));
       this.nuevoProducto = { description: '', price: 0, stock: 0, imageSrc: '' };
       this.mostrarFormulario = false;
+=======
+    // Mostrar el formulario de alta de producto
+    mostrarFormulario() {
+      this.formularioVisible = true;
+    },
+    // Cancelar el formulario y regresar a la vista de inventario
+    cancelarFormulario() {
+      this.formularioVisible = false;
+    },
+    guardarProducto() {
+      const productosGuardados = JSON.parse(localStorage.getItem('productosNuevos') || '[]');
+      productosGuardados.push({ ...this.producto, id: Date.now() });
+      localStorage.setItem('productosNuevos', JSON.stringify(productosGuardados));
+      alert('Producto guardado correctamente');
+      this.cancelarFormulario(); // Ocultar el formulario después de guardar
+    },
+    formatPrice(price) {
+      return `$${price.toFixed(2)}`;
+>>>>>>> 571eed594c1c7f906d5eafa0cec61477c5fa5a0c
     }
   }
 };
@@ -188,6 +250,7 @@ h1 {
 }
 
 .form-container {
+<<<<<<< HEAD
   background: #f9f9f9;
   padding: 20px;
   margin-bottom: 20px;
@@ -228,5 +291,41 @@ h1 {
 
 .form-buttons button[type="button"] {
   background-color: #dc3545;
+=======
+  padding: 40px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 15px;
+}
+
+input {
+  padding: 8px;
+  margin-top: 5px;
+}
+
+button {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.cancelar {
+  margin-top: 10px;
+  text-align: center;
+  display: block;
+  color: #555;
+  text-decoration: none;
+>>>>>>> 571eed594c1c7f906d5eafa0cec61477c5fa5a0c
 }
 </style>
