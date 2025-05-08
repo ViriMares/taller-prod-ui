@@ -62,7 +62,7 @@
       </div>
     </section>
 
-    <!-- Botón de contacto -->
+    <!-- Botón de contacto implicado -->
     <section class="contact-button">
       <button @click="toggleContact" class="contact-toggle-btn">
         {{ showContact ? 'Ocultar contacto' : 'Contáctanos' }}

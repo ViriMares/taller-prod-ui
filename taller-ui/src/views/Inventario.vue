@@ -70,6 +70,7 @@ export default {
         stock: 0,
         imageSrc: ''
       },
+      //PRODUCTOS IMPLICADOS
       productosBase: [
         { id: 1, description: 'Cámara de video vigilancia HD', price: 150.99, stock: 25, imageSrc: camaravigilancia },
         { id: 2, description: 'Control de acceso biométrico', price: 99.49, stock: 15, imageSrc: controlacceso },

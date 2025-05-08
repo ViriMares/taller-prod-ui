@@ -38,7 +38,7 @@ export default {
   methods: {
     agregarProducto() {
       const productos = JSON.parse(localStorage.getItem('productosNuevos') || '[]');
-      const nuevoId = productos.length + 1000; // evitar conflictos con productos base
+      const nuevoId = productos.length + 1000; // evitar conflictos con productos base de acorde a las especificaciones
       const nuevo = { id: nuevoId, ...this.nuevoProducto };
       productos.push(nuevo);
       localStorage.setItem('productosNuevos', JSON.stringify(productos));
