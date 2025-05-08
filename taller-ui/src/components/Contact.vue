@@ -11,17 +11,17 @@
           </a>
         </p>
         <p><strong>Facebook:</strong>
-          <a href="https://facebook.com/empresa.seguridad" target="_blank" rel="noopener">
+          <a href="https://facebook.com/secure.stock" target="_blank" rel="noopener">
             facebook.com/empresa.seguridad
           </a>
         </p>
         <p><strong>LinkedIn:</strong>
-          <a href="https://linkedin.com/company/empresa-seguridad" target="_blank" rel="noopener">
+          <a href="https://linkedin.com/company/secure-stock" target="_blank" rel="noopener">
             linkedin.com/company/empresa-seguridad
           </a>
         </p>
         <p><strong>Instagram:</strong>
-          <a href="https://instagram.com/empresa.seguridad" target="_blank" rel="noopener">
+          <a href="https://instagram.com/secure.stock" target="_blank" rel="noopener">
             @empresa.seguridad
           </a>
         </p>

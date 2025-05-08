@@ -1,21 +1,23 @@
 <template>
   <div class="form-container">
-    <h2>Alta de Producto</h2>
-    <form @submit.prevent="guardarProducto">
-      <label for="descripcion">Descripción:</label>
-      <input v-model="producto.description" id="descripcion" required />
+    <h2>Alta de Nuevo Producto</h2>
+    <form @submit.prevent="agregarProducto">
+      <label>Descripción:</label>
+      <input v-model="nuevoProducto.description" required />
 
-      <label for="precio">Precio:</label>
-      <input v-model.number="producto.price" id="precio" type="number" step="0.01" required />
+      <label>Precio:</label>
+      <input type="number" v-model.number="nuevoProducto.price" required step="0.01" />
 
-      <label for="stock">Stock:</label>
-      <input v-model.number="producto.stock" id="stock" type="number" required />
+      <label>Stock:</label>
+      <input type="number" v-model.number="nuevoProducto.stock" required />
 
-      <label for="imagen">URL de Imagen:</label>
-      <input v-model="producto.imageSrc" id="imagen" placeholder="Ej. /images/ejemplo.png" />
+      <label>URL de imagen:</label>
+      <input v-model="nuevoProducto.imageSrc" required />
 
-      <button type="submit">Guardar</button>
-      <button @click.prevent="$emit('cancelar')" class="cancelar">Cancelar</button>
+      <div class="form-buttons">
+        <button type="submit">Guardar</button>
+        <button type="button" @click="$emit('cancelar')">Cancelar</button>
+      </div>
     </form>
   </div>
 </template>
@@ -25,7 +27,7 @@ export default {
   name: 'AltaProducto',
   data() {
     return {
-      producto: {
+      nuevoProducto: {
         description: '',
         price: 0,
         stock: 0,
@@ -34,17 +36,60 @@ export default {
     };
   },
   methods: {
-    guardarProducto() {
-      const productosGuardados = JSON.parse(localStorage.getItem('productosNuevos') || '[]');
-      productosGuardados.push({ ...this.producto, id: Date.now() });
-      localStorage.setItem('productosNuevos', JSON.stringify(productosGuardados));
-      alert('Producto guardado correctamente');
-      this.$emit('producto-guardado');
+    agregarProducto() {
+      const productos = JSON.parse(localStorage.getItem('productosNuevos') || '[]');
+      const nuevoId = productos.length + 1000; // evitar conflictos con productos base
+      const nuevo = { id: nuevoId, ...this.nuevoProducto };
+      productos.push(nuevo);
+      localStorage.setItem('productosNuevos', JSON.stringify(productos));
+      this.$emit('producto-agregado'); // notificar al componente padre
+      this.nuevoProducto = { description: '', price: 0, stock: 0, imageSrc: '' };
     }
   }
 };
 </script>
 
 <style scoped>
-/* Puedes dejar tus estilos originales aquí */
+.form-container {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  width: 100%;
+  max-width: 600px;
+}
+
+.form-container label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.form-buttons button {
+  padding: 8px 15px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background-color: #007bff;
+  border-radius: 4px;
+}
+
+.form-buttons button[type="button"] {
+  background-color: #dc3545;
+}
 </style>
