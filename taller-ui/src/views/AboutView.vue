@@ -61,6 +61,20 @@
         <img :src="liverpool" alt="Liverpool" class="partner-logo" />
       </div>
     </section>
+
+    <!-- Botón de contacto implicado -->
+    <section class="contact-button">
+      <button @click="toggleContact" class="contact-toggle-btn">
+        {{ showContact ? 'Ocultar contacto' : 'Contáctanos' }}
+      </button>
+
+      <div v-if="showContact" class="contact-info">
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/5215551234567" target="_blank">+52 1 555 123 4567</a></p>
+        <p><strong>Facebook:</strong> <a href="https://facebook.com/secure.stock" target="_blank">facebook.com/secure.stock</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/company/secure-stock" target="_blank">linkedin.com/company/secure-stock</a></p>
+        <p><strong>Instagram:</strong> <a href="https://instagram.com/secure.stock" target="_blank">@secure.stock</a></p>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -82,7 +96,13 @@ export default {
       bimbo,
       microsoft,
       liverpool,
+      showContact: false,
     };
+  },
+  methods: {
+    toggleContact() {
+      this.showContact = !this.showContact;
+    },
   },
 };
 </script>
@@ -93,53 +113,53 @@ export default {
   font-family: Arial, sans-serif;
   padding: 40px 20px;
   margin: 0 auto;
-  width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho */
-  max-width: 100%; /* Permite que se expanda a todo el ancho disponible */
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   text-align: left;
-  padding-top: 80px; /* Asegura que no se solape con la barra de menú */
-  margin-left: 50%; /* Desplazamos todo un 50% hacia la derecha */
+  padding-top: 80px;
+  margin-left: 50%;
 }
 
 /* Introducción */
 .intro {
   margin-bottom: 40px;
-  width: 100%; /* La introducción ocupa todo el ancho de la pantalla */
+  width: 100%;
 }
 
 .intro h1 {
-  font-size: 3em; /* Aumentamos el tamaño del título */
+  font-size: 3em;
   color: #333;
   margin-bottom: 20px;
-  width: 100%; /* Título ocupa todo el ancho */
+  width: 100%;
 }
 
 .intro p {
-  font-size: 1.2rem; /* Aumentamos el tamaño del texto */
+  font-size: 1.2rem;
   color: #555;
   line-height: 1.8;
-  width: 100%; /* El párrafo ocupa todo el ancho disponible */
+  width: 100%;
 }
 
 .justified {
-  text-align: justify; /* Alineación justificada para los párrafos */
-  width: 100%; /* El texto ocupará el 100% del ancho */
+  text-align: justify;
+  width: 100%;
 }
 
 /* Misión, Visión y Objetivos */
 .mission-vision-objectives {
   display: flex;
-  justify-content: space-between; /* Asegura que las secciones se distribuyan equitativamente */
+  justify-content: space-between;
   gap: 40px;
   margin-bottom: 40px;
   width: 100%;
 }
 
 .section-item {
-  width: 30%; /* Mantiene un tamaño adecuado para cada item */
+  width: 30%;
   text-align: center;
 }
 
@@ -165,7 +185,6 @@ export default {
   line-height: 1.5;
 }
 
-/* Estilo de las imágenes en Misión, Visión y Objetivos */
 .section-img {
   width: 120px;
   height: 120px;
@@ -174,7 +193,7 @@ export default {
   margin-bottom: 15px;
 }
 
-/* Sección de Empresas con las que trabajamos */
+/* Empresas con las que trabajamos */
 .partners {
   margin-top: 40px;
   width: 100%;
@@ -205,5 +224,47 @@ export default {
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón de contacto */
+.contact-button {
+  width: 100%;
+  margin-top: 60px;
+  text-align: center;
+}
+
+.contact-toggle-btn {
+  background-color: #0056b3;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-toggle-btn:hover {
+  background-color: #004494;
+}
+
+.contact-info {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #333;
+  text-align: left;
+}
+
+.contact-info p {
+  margin-bottom: 10px;
+}
+
+.contact-info a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
 }
 </style>
