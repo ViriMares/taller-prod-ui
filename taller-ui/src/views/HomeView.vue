@@ -3,13 +3,13 @@ import HeroSection from '../components/HeroSection.vue';
 import AboutSection from '../components/AboutSection.vue';
 import ServicesSection from '../components/ServicesSection.vue';
 import ContactSection from '../components/ContactSection.vue';
-import Carousel from '../components/Carousel.vue'; // Importa el carrusel
+import Carousel from '../components/Carousel.vue';
 </script>
 
 <template>
-  <main>
+  <main class="home">
     <HeroSection />
-    <Carousel /> <!-- Agregando el carrusel -->
+    <Carousel />
     <AboutSection />
     <ServicesSection />
     <ContactSection />
@@ -17,11 +17,13 @@ import Carousel from '../components/Carousel.vue'; // Importa el carrusel
 </template>
 
 <style scoped>
-main {
-  display: flex;
-  flex-direction: column;
+.home {
+  width: 100vw; /* Ocupa toda la pantalla horizontalmente */
+  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+  display: fluid;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  text-align: center;
+  background-color: #f0f0f0; /* Fondo de prueba */
 }
 </style>

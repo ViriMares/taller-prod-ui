@@ -1,47 +1,71 @@
 <template>
-  <div class="card">
-    <!-- Imagen del Producto (Ahora usa la nueva imagen Camara.png) -->
-    <img class="product-image" :src="`/Camara.png`" :alt="nombre" />
+  <div class="card" :class="categoriaClass">
+    <!-- Imagen del Producto -->
+    <img
+      class="product-image"
+      :src="imagenProducto"
+      :alt="producto.nombreProducto"
+      @error="imagenError"
+    />
 
     <!-- Información del Producto -->
     <div class="card-content">
-      <h3 class="product-title">{{ nombre }}</h3>
-      <p class="product-description">{{ descripcion }}</p>
-      <button class="buy-button">Ver más</button>
+      <h3 class="product-title">{{ producto.nombreProducto }}</h3>
+      <p class="product-price">Precio: ${{ producto.precio }}</p>
+      <p class="product-stock">Stock: {{ producto.stock }}</p>
+      <button class="buy-button">¡Me interesa!</button>
     </div>
   </div>
 </template>
 
 <script setup>
-defineProps({
-  nombre: String,
-  descripcion: String
+import { computed, ref } from 'vue';
+
+const props = defineProps({
+  producto: Object
+});
+
+const imagenProducto = ref(`/images/${props.producto.imagen || 'default.jpg'}`);
+
+const imagenError = () => {
+  imagenProducto.value = '/default.jpg'; // fallback
+};
+
+const categoriaClass = computed(() => {
+  switch ((props.producto.categoria || '').toLowerCase()) {
+    case 'videovigilancia':
+      return 'videovigilancia-theme';
+    case 'control-acceso':
+      return 'control-acceso-theme';
+    case 'alarmas':
+      return 'alarmas-theme';
+    default:
+      return '';
+  }
 });
 </script>
 
 <style scoped>
 .card {
   width: 100%;
-  max-width: 300px;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background: white;
   text-align: center;
   transition: transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-/* 📌 Ajustar el tamaño de la imagen sin que se corte */
 .product-image {
   width: 100%;
-  height: 200px; /* Ajusta la altura según sea necesario */
-  object-fit: contain; /* Asegura que la imagen no se corte */
+  height: 200px;
+  object-fit: contain;
   padding: 10px;
-  background: #f8f8f8; /* Fondo gris claro para destacar la imagen */
+  background: #f8f8f8;
 }
 
 .card-content {
@@ -50,18 +74,20 @@ defineProps({
 
 .product-title {
   font-weight: bold;
-  color: #007bff;
+  font-size: 18px;
   margin-bottom: 8px;
 }
 
-.product-description {
+.product-price,
+.product-stock {
   font-size: 14px;
-  color: #444;
-  margin-bottom: 10px;
+  margin: 4px 0;
+  color: #555;
 }
 
 .buy-button {
-  background: #007bff;
+  margin-top: 10px;
+  background-color: #007bff;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -71,6 +97,29 @@ defineProps({
 }
 
 .buy-button:hover {
-  background: #0056b3;
+  background-color: #0056b3;
+}
+
+/* Temas por categoría */
+.videovigilancia-theme .product-title {
+  color: #1976d2;
+}
+.videovigilancia-theme .buy-button {
+  background-color: #1976d2;
+}
+
+.control-acceso-theme .product-title {
+  color: #2e7d32;
+}
+.control-acceso-theme .buy-button {
+  background-color: #2e7d32;
+}
+
+.alarmas-theme .product-title {
+  color: #d32f2f;
+}
+.alarmas-theme .buy-button {
+  background-color: #d32f2f;
 }
 </style>
+
